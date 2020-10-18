@@ -10,6 +10,8 @@ public class FallItem : MonoBehaviour
 
     public GameObject CatchEffect;
 
+    public List<Sprite> Sprites;
+
     private SpriteRenderer sprite;
     private Animator anim;
 
@@ -18,6 +20,8 @@ public class FallItem : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        sprite.sprite = Sprites[Random.Range(0, Sprites.Count)];
 
         sprite.flipX = Random.value < .5f;
         sprite.flipY = Random.value < .5f;
