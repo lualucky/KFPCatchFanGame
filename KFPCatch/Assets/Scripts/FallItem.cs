@@ -10,10 +10,19 @@ public class FallItem : MonoBehaviour
 
     public GameObject CatchEffect;
 
+    private SpriteRenderer sprite;
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
+        sprite.flipX = Random.value < .5f;
+        sprite.flipY = Random.value < .5f;
+
+        anim.speed = Random.Range(.5f, 1.2f);
     }
 
     // Update is called once per frame

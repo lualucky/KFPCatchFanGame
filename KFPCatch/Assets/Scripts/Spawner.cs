@@ -14,27 +14,36 @@ public class Spawner : MonoBehaviour
     public float SpawnRate;
     public float BombPercent;
 
+    public float Height;
+    public float Width;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Active &&  Random.value <= SpawnRate)
+        if (Active && Random.value <= SpawnRate)
         {
             // regular chicken spawn
             if(Random.value >= BombPercent)
             {
-                GameObject obj = Instantiate(Item);
+                Spawn(Item);
             }
             // bad chicken spawn
             else
             {
-                GameObject obj = Instantiate(Bomb);
+                Spawn(Bomb);
             }
         }
+    }
+
+    void Spawn(GameObject item)
+    {
+        GameObject obj = Instantiate(item);
+        obj.transform.position = new Vector2(Width * Random.Range(-1f, 1f), Height);
     }
 }

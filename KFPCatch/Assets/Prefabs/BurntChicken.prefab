@@ -65,7 +65,12 @@ PrefabInstance:
     - target: {fileID: 4271898744664505893, guid: fe6953ab02f86ce4e99778adfe58d07b,
         type: 3}
       propertyPath: m_Name
-      value: Chicken
+      value: BurntChicken
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271898744664505893, guid: fe6953ab02f86ce4e99778adfe58d07b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4433259385473782639, guid: fe6953ab02f86ce4e99778adfe58d07b,
         type: 3}
@@ -73,5 +78,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 81c81e52a40eade4e8f608559341f48b,
         type: 3}
+    - target: {fileID: 4433259385473782639, guid: fe6953ab02f86ce4e99778adfe58d07b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe6953ab02f86ce4e99778adfe58d07b, type: 3}

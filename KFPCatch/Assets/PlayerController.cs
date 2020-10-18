@@ -7,27 +7,32 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 
-    private Rigidbody2D rb2d;
+    private Rigidbody2D body;
+    private SpriteRenderer sprite;
+    private float preVel = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
     void FixedUpdate()
     {
-        //Store the current horizontal input in the float moveHorizontal.
+        // -- movement
         float moveHorizontal = Input.GetAxis("Horizontal");
+        Vector2 movement = new Vector2(moveHorizontal, 0);
+        body.AddForce(movement * speed);
 
-        //Store the current vertical input in the float moveVertical.
-        float moveVertical = Input.GetAxis("Vertical");
+        // -- animation
+        if(body.velocity.x < 0.001 && preVel > 0.001 || body.velocity.x > 0.001 && preVel < 0.001)
+        {
+            sprite.flipX = !sprite.flipX;
+        }
 
-        //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-        //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-        rb2d.AddForce(movement * speed);
+        preVel = body.velocity.x;
     }
 }

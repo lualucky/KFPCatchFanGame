@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4703098527333942819}
   - component: {fileID: 6453555851314102745}
   - component: {fileID: 9118515782698559760}
-  m_Layer: 0
+  - component: {fileID: 1297650866}
+  m_Layer: 10
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 08e4353348d948644b9af8dce22d6b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -143,3 +144,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13ea47127b43d848858f56b5a7ded2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 0
+  Penalty: 0
+  CatchEffect: {fileID: 0}
+--- !u!95 &1297650866
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4271898744664505893}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7509cd6c7ef0d240b0b523b38ba0cee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
