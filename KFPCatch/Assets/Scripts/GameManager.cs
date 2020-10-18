@@ -10,6 +10,16 @@ public class GameManager : MonoBehaviour
 
     public Text ScoreText;
 
+    public PlayerController Player;
+    public Spawner Spawner;
+
+    public int HatCount = 0;
+    private int hatsRequired;
+
+    public Transform HatParent;
+
+    public Electrical ElectricalPanel;
+
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
 
@@ -27,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ScoreText.text = "¥ " + Score;
+        hatsRequired = HatParent.childCount;
     }
 
     // Update is called once per frame
@@ -39,5 +50,19 @@ public class GameManager : MonoBehaviour
     {
         Score += points;
         ScoreText.text = "¥" + Score;
+    }
+
+    private void PapaEvent()
+    {
+
+    }
+    public void HatCatch()
+    {
+        HatParent.GetChild(HatCount).gameObject.SetActive(true);
+        HatCount++;
+        if(HatCount == hatsRequired)
+        {
+            PapaEvent();
+        }
     }
 }

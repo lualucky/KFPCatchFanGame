@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f55987ead17aeb1408721041e3cb5d61
+guid: f733224b95a49234383f8f2fd4ceb179
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   fontName: ArcadeClassic
   fontNames:
   - ArcadeClassic
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f55987ead17aeb1408721041e3cb5d61, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

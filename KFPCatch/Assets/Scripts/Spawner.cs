@@ -10,9 +10,11 @@ public class Spawner : MonoBehaviour
 
     public GameObject Item;
     public GameObject Bomb;
+    public GameObject Hat;
 
     public float SpawnRate;
     public float BombPercent;
+    public float HatPercent;
 
     public float Height;
     public float Width;
@@ -29,14 +31,18 @@ public class Spawner : MonoBehaviour
         if (Active && Random.value <= SpawnRate)
         {
             // regular chicken spawn
-            if(Random.value >= BombPercent)
-            {
-                Spawn(Item);
-            }
-            // bad chicken spawn
-            else
+            if(Random.value < BombPercent)
             {
                 Spawn(Bomb);
+            }
+            // bad chicken spawn
+            else if(Random.value < HatPercent)
+            {
+                Spawn(Hat);
+            }
+            else
+            {
+                Spawn(Item);
             }
         }
     }

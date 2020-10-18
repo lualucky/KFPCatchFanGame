@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FallItem : MonoBehaviour
 {
+    public bool Hat;
     public int Score;
     public int Penalty;
 
@@ -34,14 +35,14 @@ public class FallItem : MonoBehaviour
     {
         if(transform.position.y < -6)
         {
-            GameManager.Instance.Score -= Penalty;
+            GameManager.Instance.ChangeScore(Penalty);
             Destroy(gameObject);
         }
     }
 
     public void Catch()
     {
-        GameManager.Instance.Score += Score;
+        GameManager.Instance.ChangeScore(Score);
         if (CatchEffect != null)
         {
             GameObject obj = Instantiate(CatchEffect);
@@ -49,5 +50,13 @@ public class FallItem : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            Catch();
+        }
     }
 }

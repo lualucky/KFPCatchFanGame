@@ -9,14 +9,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D body;
     private SpriteRenderer sprite;
-    private float preVel = 0;
+    private bool isRight = false;
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -26,13 +25,11 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveHorizontal, 0);
         body.AddForce(movement * speed);
-
         // -- animation
-        if(body.velocity.x < 0.001 && preVel > 0.001 || body.velocity.x > 0.001 && preVel < 0.001)
+        if((body.velocity.x < -0.001f && isRight) || (body.velocity.x > 0.001f && !isRight))
         {
-            sprite.flipX = !sprite.flipX;
+            isRight = !isRight;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
-
-        preVel = body.velocity.x;
     }
 }
