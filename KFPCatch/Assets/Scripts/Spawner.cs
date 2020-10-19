@@ -12,8 +12,12 @@ public class Spawner : MonoBehaviour
     public GameObject Bomb;
     public GameObject Hat;
 
+    public bool HatEvent;
+    public float HatSpawnRate;
     public float SpawnRate;
-    public float BombPercent;
+    public bool Broken;
+    public float RegularBombPercent;
+    public float BrokenBombPercent;
     public float HatPercent;
 
     public float Height;
@@ -28,10 +32,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Active && Random.value <= SpawnRate)
+        if (Active && Random.value <= (HatEvent ? HatSpawnRate : SpawnRate))
         {
             // regular chicken spawn
-            if(Random.value < BombPercent)
+            if(HatEvent || (Random.value < (Broken ? BrokenBombPercent : RegularBombPercent)))
             {
                 Spawn(Bomb);
             }

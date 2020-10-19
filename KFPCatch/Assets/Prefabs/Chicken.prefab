@@ -144,9 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13ea47127b43d848858f56b5a7ded2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hat: 0
   Score: 200
   Penalty: -50
   CatchEffect: {fileID: 0}
+  ScoreEffect: {fileID: 7630926614214812670, guid: 690f7703efd98bf4fa9733892baef4b4,
+    type: 3}
   Sprites:
   - {fileID: 21300000, guid: 3329046f434bdc945abbd9f25918fdc2, type: 3}
   - {fileID: 21300000, guid: 9336ea8bd0f1c2b479d69699351526fc, type: 3}

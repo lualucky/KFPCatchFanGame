@@ -10,6 +10,7 @@ public class FallItem : MonoBehaviour
     public int Penalty;
 
     public GameObject CatchEffect;
+    public GameObject ScoreEffect;
 
     public List<Sprite> Sprites;
 
@@ -43,10 +44,16 @@ public class FallItem : MonoBehaviour
     public void Catch()
     {
         GameManager.Instance.ChangeScore(Score);
-        if (CatchEffect != null)
+        if (CatchEffect)
         {
             GameObject obj = Instantiate(CatchEffect);
             obj.transform.position = transform.position;
+        }
+        if (ScoreEffect)
+        {
+            GameObject score = Instantiate(ScoreEffect);
+            score.transform.position = transform.position;
+            score.GetComponent<ScoreIndicator>().SetScore(Score);
         }
 
         Destroy(gameObject);
@@ -57,6 +64,8 @@ public class FallItem : MonoBehaviour
         if (collision.gameObject.layer == 11)
         {
             Catch();
+            if(Hat)
+                GameManager.Instance.HatCatch();
         }
     }
 }

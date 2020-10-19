@@ -18,7 +18,10 @@ public class GameManager : MonoBehaviour
 
     public Transform HatParent;
 
+    public float BreakChance;
     public Electrical ElectricalPanel;
+
+    public GameObject HatEvent;
 
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
@@ -43,7 +46,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Random.value < BreakChance)
+        {
+            ElectricalPanel.SetBroken(true);
+        }
     }
 
     public void ChangeScore(int points)
@@ -54,7 +60,12 @@ public class GameManager : MonoBehaviour
 
     private void PapaEvent()
     {
-
+        HatCount = 0;
+        foreach(Transform t in HatParent.GetComponentInChildren<Transform>())
+        {
+            t.gameObject.SetActive(false);
+        }
+        HatEvent.SetActive(true);
     }
     public void HatCatch()
     {
