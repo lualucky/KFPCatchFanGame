@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int Score = 0;
 
     public Text ScoreText;
+    public GameObject ScoreEffect;
 
     public PlayerController Player;
     public Spawner Spawner;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float BreakChance;
     public Electrical ElectricalPanel;
 
+    public bool HatEventActive = false;
     public GameObject HatEvent;
 
     static GameManager instance = null;
@@ -54,17 +56,28 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScore(int points)
     {
+        if (HatEventActive && points < 0)
+            return;
         Score += points;
         ScoreText.text = "¥" + Score;
+        if (ScoreEffect)
+        {
+            GameObject score = Instantiate(ScoreEffect);
+            score.GetComponent<ScoreIndicator>().SetScore(Score);
+        }
     }
 
     private void PapaEvent()
     {
+        HatEventActive = true;
         HatCount = 0;
-        foreach(Transform t in HatParent.GetComponentInChildren<Transform>())
+        Spawner.HatEvent = true;
+        // -- hide the hat icons 
+        foreach (Transform t in HatParent.GetComponentInChildren<Transform>())
         {
             t.gameObject.SetActive(false);
         }
+        // -- glow
         HatEvent.SetActive(true);
     }
     public void HatCatch()

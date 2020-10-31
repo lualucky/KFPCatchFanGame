@@ -10,7 +10,6 @@ public class FallItem : MonoBehaviour
     public int Penalty;
 
     public GameObject CatchEffect;
-    public GameObject ScoreEffect;
 
     public List<Sprite> Sprites;
 
@@ -48,12 +47,6 @@ public class FallItem : MonoBehaviour
         {
             GameObject obj = Instantiate(CatchEffect);
             obj.transform.position = transform.position;
-        }
-        if (ScoreEffect)
-        {
-            GameObject score = Instantiate(ScoreEffect);
-            score.transform.position = transform.position;
-            score.GetComponent<ScoreIndicator>().SetScore(Score);
         }
 
         Destroy(gameObject);

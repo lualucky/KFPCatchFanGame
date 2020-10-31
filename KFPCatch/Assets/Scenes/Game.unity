@@ -891,12 +891,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   ScoreText: {fileID: 1250249466}
+  ScoreEffect: {fileID: 0}
   Player: {fileID: 23342491}
   Spawner: {fileID: 1061073960}
   HatCount: 0
   HatParent: {fileID: 1152195645}
   BreakChance: 0.00001
   ElectricalPanel: {fileID: 1028029758}
+  HatEventActive: 0
   HatEvent: {fileID: 837339694}
 --- !u!4 &1061073962
 Transform:
