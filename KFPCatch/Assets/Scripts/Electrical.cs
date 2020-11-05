@@ -20,10 +20,16 @@ public class Electrical : MonoBehaviour
 
     public float fixSpeed;
 
+    public GameObject Smoke;
+
+    private Animator anim;
+    private Animator smokeanim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        smokeanim = Smoke.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -47,7 +53,7 @@ public class Electrical : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (broken && Input.GetButton("Fix"))
+        if (!animating && broken && Input.GetButton("Fix"))
         {
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (player != null)
@@ -70,6 +76,8 @@ public class Electrical : MonoBehaviour
             // -- break
             if(broken)
             {
+                anim.SetBool("Malfunction", true);
+                Smoke.SetActive(true);
                 UI.SetActive(true);
                 startFill = health.fillAmount;
                 timeElapsed = 0f;
@@ -80,6 +88,8 @@ public class Electrical : MonoBehaviour
             // -- fix
             else
             {
+                anim.SetBool("Malfunction", false);
+                Smoke.SetActive(false);
                 GameManager.Instance.Spawner.Broken = false;
                 UI.SetActive(false);
             }

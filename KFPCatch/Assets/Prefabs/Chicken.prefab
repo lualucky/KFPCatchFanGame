@@ -147,8 +147,7 @@ MonoBehaviour:
   Hat: 0
   Score: 200
   Penalty: -50
-  CatchEffect: {fileID: 0}
-  ScoreEffect: {fileID: 7630926614214812670, guid: 690f7703efd98bf4fa9733892baef4b4,
+  CatchEffect: {fileID: 7257823116888524025, guid: 4170270c9e3546f4cb2ba1484cd2b2f6,
     type: 3}
   Sprites:
   - {fileID: 21300000, guid: 3329046f434bdc945abbd9f25918fdc2, type: 3}

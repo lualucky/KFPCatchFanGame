@@ -32,8 +32,13 @@ public class PlayerController : MonoBehaviour
         if ((body.velocity.x < -0.001f && isRight) || (body.velocity.x > 0.001f && !isRight))
         {
             isRight = !isRight;
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            anim.SetBool("isRight", isRight);
         }
+
+        if(Mathf.Abs(body.velocity.x) > .01f)
+            anim.SetBool("Moving", true);
+        else
+            anim.SetBool("Moving", false);
     }
 
     public void Fixing(bool fix)
