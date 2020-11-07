@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     private bool isRight = false;
     private bool fixing;
 
+    public bool MovementEnabled = true;
+
+    public Transform Bucket;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,20 +29,28 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // -- movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector2 movement = new Vector2(moveHorizontal, 0);
-        body.AddForce(movement * speed);
-        // -- animation
-        if ((body.velocity.x < -0.001f && isRight) || (body.velocity.x > 0.001f && !isRight))
+        if (MovementEnabled)
         {
-            isRight = !isRight;
-            anim.SetBool("isRight", isRight);
-        }
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            Vector2 movement = new Vector2(moveHorizontal, 0);
+            body.AddForce(movement * speed);
+            // -- animation
+            if ((body.velocity.x < -0.001f && isRight) || (body.velocity.x > 0.001f && !isRight))
+            {
+                isRight = !isRight;
+                Bucket.localPosition = new Vector2(-Bucket.localPosition.x, Bucket.localPosition.y);
+                anim.SetBool("isRight", isRight);
+            }
 
-        if(Mathf.Abs(body.velocity.x) > .01f)
-            anim.SetBool("Moving", true);
-        else
-            anim.SetBool("Moving", false);
+            if (Mathf.Abs(body.velocity.x) > .1f)
+            {
+                anim.SetBool("Moving", true);
+            }
+            else
+            {
+                anim.SetBool("Moving", false);
+            }
+        }
     }
 
     public void Fixing(bool fix)
@@ -48,5 +60,11 @@ public class PlayerController : MonoBehaviour
             fixing = fix;
             anim.SetBool("fixing", fix);
         }
+    }
+
+    public void Papa()
+    {
+        anim.SetTrigger("Papa");
+        body.velocity = new Vector2(0, 0);
     }
 }

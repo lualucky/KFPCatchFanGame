@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public Electrical ElectricalPanel;
 
     public bool HatEventActive = false;
-    public GameObject HatEvent;
+    public GameObject HatUI;
+    public GameObject PapaGlow;
 
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
@@ -60,8 +61,9 @@ public class GameManager : MonoBehaviour
             return;
         Score += points;
         ScoreText.text = "¥" + Score;
-        if (ScoreEffect)
+        if (ScoreEffect && points != 0)
         {
+            print("Score Effect!");
             GameObject score = Instantiate(ScoreEffect);
             score.GetComponent<ScoreIndicator>().SetScore(Score);
         }
@@ -69,22 +71,23 @@ public class GameManager : MonoBehaviour
 
     private void PapaEvent()
     {
+        Player.Papa();
         HatEventActive = true;
         HatCount = 0;
         Spawner.HatEvent = true;
+        HatUI.GetComponent<Animator>().SetTrigger("Blink");
         // -- hide the hat icons 
-        foreach (Transform t in HatParent.GetComponentInChildren<Transform>())
+        for (int i = 0; i < HatUI.transform.childCount; ++i)
         {
-            t.gameObject.SetActive(false);
+            HatUI.GetComponent<Animator>().SetBool("Hat" + i, false);
         }
-        // -- glow
-        HatEvent.SetActive(true);
+        PapaGlow.SetActive(true);
     }
     public void HatCatch()
     {
-        HatParent.GetChild(HatCount).gameObject.SetActive(true);
         HatCount++;
-        if(HatCount == hatsRequired)
+        HatUI.GetComponent<Animator>().SetBool("Hat" + HatCount, true);
+        if (HatCount == hatsRequired)
         {
             PapaEvent();
         }
