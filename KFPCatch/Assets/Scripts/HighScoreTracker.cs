@@ -7,6 +7,7 @@ public class HighScoreTracker : MonoBehaviour
 
     public int HighScore = 0;
     public int Score = 0;
+    private bool set;
 
     static HighScoreTracker instance = null;
     public static HighScoreTracker Instance { get { return instance; } }
@@ -27,7 +28,10 @@ public class HighScoreTracker : MonoBehaviour
     public void SetScore(int _score)
     {
         Score = _score;
-        if (Score > HighScore)
+        if (Score > HighScore || !set)
+        {
             HighScore = Score;
+            set = true;
+        }
     }
 }

@@ -12,10 +12,15 @@ public class Spawner : MonoBehaviour
     public GameObject Bomb;
     public GameObject Hat;
 
+    [HideInInspector]
     public bool HatEvent;
+
     public float HatEventSpawnRate;
     public float SpawnRate;
+
+    [HideInInspector]
     public bool Broken;
+
     public float RegularBombPercent;
     public float BrokenBombPercent;
     public float HatPercent;
@@ -28,7 +33,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(CrankUpSpawn());
     }
 
     // Update is called once per frame
@@ -59,7 +64,7 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(DoubleSpawnTime);
             SpawnRate *= 2f;
-            RegularBombPercent *= 1.1f;
+            RegularBombPercent *= 1.5f;
         }
     }
 

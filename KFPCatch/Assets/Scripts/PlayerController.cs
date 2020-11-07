@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         if(fixing != fix)
         {
             fixing = fix;
-            anim.SetBool("fixing", fix);
+            anim.SetBool("Fixing", fix);
         }
     }
 

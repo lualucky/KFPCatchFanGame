@@ -9,7 +9,8 @@ public class Electrical : MonoBehaviour
 
     private bool inside;
 
-    private bool broken = false;
+    [HideInInspector]
+    public bool Broken = false;
     private float brokenPercentage = 0;
 
     public Image health;
@@ -24,6 +25,10 @@ public class Electrical : MonoBehaviour
 
     private Animator anim;
     private Animator smokeanim;
+
+
+    private bool playerEntered;
+    private bool fixing;
 
     // Start is called before the first frame update
     void Start()
@@ -40,41 +45,59 @@ public class Electrical : MonoBehaviour
             timeElapsed += Time.deltaTime;
             if (timeElapsed >= 1f)
             {
-                health.fillAmount = 1 - brokenPercentage;
+                health.fillAmount = brokenPercentage;
                 animating = false;
             }
             else
             {
-                float target = 1 - brokenPercentage;
+                float target = brokenPercentage;
                 health.fillAmount = Mathf.Lerp(startFill, target, timeElapsed);
             }
         }
+        if (playerEntered && Broken && Input.GetButton("Fix"))
+        {
+            fixing = true;
+            GameManager.Instance.Player.Fixing(true);
+            brokenPercentage -= fixSpeed;
+            if(!animating)
+                health.fillAmount = brokenPercentage;
+            if (brokenPercentage <= .02f)
+            {
+                SetBroken(false);
+            }
+        }
+        else if (fixing)
+        {
+            fixing = false;
+            GameManager.Instance.Player.Fixing(false);
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!animating && broken && Input.GetButton("Fix"))
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if(player != null)
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                brokenPercentage -= fixSpeed;
-                health.fillAmount = 1 - brokenPercentage;
-                if (brokenPercentage <= 0)
-                {
-                    SetBroken(false);
-                }
-            }
+            playerEntered = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if(player != null)
+        {
+            playerEntered = false;
         }
     }
 
     public void SetBroken(bool broke)
     {
-        if(broke != broken)
+        if(broke != Broken)
         {
-            broken = broke;
+            Broken = broke;
             // -- break
-            if(broken)
+            if(Broken)
             {
                 anim.SetBool("Malfunction", true);
                 Smoke.SetActive(true);

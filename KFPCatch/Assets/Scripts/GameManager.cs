@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
     public float BreakChance;
     public Electrical ElectricalPanel;
 
+    [HideInInspector]
     public bool HatEventActive = false;
+
     public GameObject HatUI;
     public GameObject PapaGlow;
 
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Random.value < BreakChance)
+        if(!ElectricalPanel.Broken && Random.value < BreakChance)
         {
             ElectricalPanel.SetBroken(true);
         }
