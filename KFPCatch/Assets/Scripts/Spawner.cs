@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     public GameObject Hat;
 
     public bool HatEvent;
-    public float HatSpawnRate;
+    public float HatEventSpawnRate;
     public float SpawnRate;
     public bool Broken;
     public float RegularBombPercent;
@@ -22,6 +22,8 @@ public class Spawner : MonoBehaviour
 
     public float Height;
     public float Width;
+
+    public float DoubleSpawnTime;
 
     // Start is called before the first frame update
     void Start()
@@ -32,15 +34,15 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Active && Random.value <= (HatEvent ? HatSpawnRate : SpawnRate))
+        if (Active && Random.value <= (HatEvent ? HatEventSpawnRate : SpawnRate))
         {
             // regular chicken spawn
-            if(HatEvent || (Random.value < (Broken ? BrokenBombPercent : RegularBombPercent)))
+            if(!HatEvent && (Random.value < (Broken ? BrokenBombPercent : RegularBombPercent)))
             {
                 Spawn(Bomb);
             }
             // bad chicken spawn
-            else if(Random.value < HatPercent)
+            else if(!HatEvent && Random.value < HatPercent)
             {
                 Spawn(Hat);
             }
@@ -48,6 +50,16 @@ public class Spawner : MonoBehaviour
             {
                 Spawn(Item);
             }
+        }
+    }
+
+    IEnumerator CrankUpSpawn()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(DoubleSpawnTime);
+            SpawnRate *= 2f;
+            RegularBombPercent *= 1.1f;
         }
     }
 

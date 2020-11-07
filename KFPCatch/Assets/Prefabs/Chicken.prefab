@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hat: 0
   Score: 200
-  Penalty: -50
+  Penalty: 0
   CatchEffect: {fileID: 7257823116888524025, guid: 4170270c9e3546f4cb2ba1484cd2b2f6,
     type: 3}
   Sprites:

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
     public int Score = 0;
 
     public Text ScoreText;
-    public GameObject ScoreEffect;
+    public GameObject GoodScoreEffect;
+    public GameObject BadScoreEffect;
 
     public PlayerController Player;
     public Spawner Spawner;
@@ -26,6 +28,9 @@ public class GameManager : MonoBehaviour
     public GameObject HatUI;
     public GameObject PapaGlow;
 
+    public Animator Lives;
+    private int LifeCount = 3;
+
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
 
@@ -34,6 +39,7 @@ public class GameManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
 
         instance = this;
@@ -61,14 +67,41 @@ public class GameManager : MonoBehaviour
             return;
         Score += points;
         ScoreText.text = "¥" + Score;
-        if (ScoreEffect && points != 0)
+
+        if(points < 0)
         {
-            print("Score Effect!");
-            GameObject score = Instantiate(ScoreEffect);
-            score.GetComponent<ScoreIndicator>().SetScore(Score);
+            Lives.SetBool("Life" + LifeCount, false);
+            LifeCount--;
+            if (LifeCount == 0)
+            {
+                Lose();
+            }
+        }
+
+        if (points != 0)
+        {
+            GameObject score;
+            if (points > 0)
+                score = Instantiate(GoodScoreEffect);
+            else
+                score = Instantiate(BadScoreEffect);
         }
     }
 
+    IEnumerator EndPapaEvent()
+    {
+        yield return new WaitForSeconds(10);
+
+        HatEventActive = false;
+        Spawner.HatEvent = false;
+        PapaGlow.SetActive(false);
+    }
+    IEnumerator StartPapaEvent()
+    {
+        yield return new WaitForSeconds(2);
+
+        StartCoroutine(EndPapaEvent());
+    }
     private void PapaEvent()
     {
         Player.Papa();
@@ -77,11 +110,13 @@ public class GameManager : MonoBehaviour
         Spawner.HatEvent = true;
         HatUI.GetComponent<Animator>().SetTrigger("Blink");
         // -- hide the hat icons 
-        for (int i = 0; i < HatUI.transform.childCount; ++i)
+        for (int i = 1; i <= HatUI.transform.childCount; ++i)
         {
             HatUI.GetComponent<Animator>().SetBool("Hat" + i, false);
         }
         PapaGlow.SetActive(true);
+
+        StartCoroutine(StartPapaEvent());
     }
     public void HatCatch()
     {
@@ -91,5 +126,21 @@ public class GameManager : MonoBehaviour
         {
             PapaEvent();
         }
+    }
+
+    IEnumerator LoseScreen(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        SceneManager.LoadScene(3);
+    }
+
+    public void Lose()
+    {
+        Debug.Log("LOSE");
+        Spawner.Active = false;
+        HighScoreTracker.Instance.SetScore(Score);
+        Player.gameObject.GetComponent<Animator>().SetTrigger("Lose");
+        StartCoroutine(LoseScreen(3));
     }
 }
