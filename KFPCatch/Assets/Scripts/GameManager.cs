@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Animator Lives;
     private int LifeCount = 3;
 
+    public GameObject Fire;
+
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
 
@@ -96,12 +98,13 @@ public class GameManager : MonoBehaviour
 
         HatEventActive = false;
         Spawner.HatEvent = false;
-        PapaGlow.SetActive(false);
+        PapaGlow.GetComponentInChildren<Animator>().SetTrigger("lightOff");
     }
     IEnumerator StartPapaEvent()
     {
         yield return new WaitForSeconds(2);
 
+        Spawner.Active = true;
         StartCoroutine(EndPapaEvent());
     }
     private void PapaEvent()
@@ -110,6 +113,7 @@ public class GameManager : MonoBehaviour
         HatEventActive = true;
         HatCount = 0;
         Spawner.HatEvent = true;
+        Spawner.Active = false;
         HatUI.GetComponent<Animator>().SetTrigger("Blink");
         // -- hide the hat icons 
         for (int i = 1; i <= HatUI.transform.childCount; ++i)
@@ -130,19 +134,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator LoseScreen(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        SceneManager.LoadScene(3);
-    }
-
     public void Lose()
     {
         Debug.Log("LOSE");
         Spawner.Active = false;
         HighScoreTracker.Instance.SetScore(Score);
         Player.gameObject.GetComponent<Animator>().SetTrigger("Lose");
-        StartCoroutine(LoseScreen(3));
+        Fire.SetActive(true);
     }
 }

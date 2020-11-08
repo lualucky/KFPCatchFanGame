@@ -50,3 +50,6 @@ TagManager:
   - name: Effects
     uniqueID: 1085974139
     locked: 0
+  - name: TopEffects
+    uniqueID: 4236203135
+    locked: 0
