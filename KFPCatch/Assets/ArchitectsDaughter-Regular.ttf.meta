@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f733224b95a49234383f8f2fd4ceb179
+guid: f9828d89e244f2c4491f255681fc13ff
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,11 +8,10 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: ArcadeClassic
+  fontName: Architects Daughter
   fontNames:
-  - ArcadeClassic
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: f55987ead17aeb1408721041e3cb5d61, type: 3}
+  - Architects Daughter
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

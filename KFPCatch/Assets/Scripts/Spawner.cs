@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Active && Random.value <= (HatEvent ? HatEventSpawnRate : SpawnRate))
         {
@@ -65,6 +65,7 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(DoubleSpawnTime);
             SpawnRate *= 1.5f;
             RegularBombPercent *= 1.25f;
+            DoubleSpawnTime = 20;
         }
     }
 

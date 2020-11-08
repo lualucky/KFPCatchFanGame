@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,6 +56,10 @@ public class Electrical : MonoBehaviour
                 health.fillAmount = Mathf.Lerp(startFill, target, timeElapsed);
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
         if (playerEntered && Broken && Input.GetButton("Fix"))
         {
             prompted = true;
@@ -65,7 +68,7 @@ public class Electrical : MonoBehaviour
             fixing = true;
             GameManager.Instance.Player.Fixing(true);
             brokenPercentage -= fixSpeed;
-            if(!animating)
+            if (!animating)
                 health.fillAmount = brokenPercentage;
             if (brokenPercentage <= .02f)
             {

@@ -13,6 +13,6 @@ public class ScoreScreen : MonoBehaviour
     void Start()
     {
         Score.text = "Profit: ¥" + HighScoreTracker.Instance.Score;
-        HighScore.text = "Your  Highest  Profit: ¥" + HighScoreTracker.Instance.HighScore;
+        HighScore.text = "Your Highest Profit: ¥" + HighScoreTracker.Instance.HighScore;
     }
 }

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(!HatEventActive && !ElectricalPanel.Broken && Random.value < BreakChance)
         {
