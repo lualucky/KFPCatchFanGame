@@ -23,6 +23,9 @@ public class Electrical : MonoBehaviour
 
     public GameObject Smoke;
 
+    public GameObject KeyPrompt;
+    private bool prompted = false;
+
     private Animator anim;
     private Animator smokeanim;
 
@@ -56,6 +59,9 @@ public class Electrical : MonoBehaviour
         }
         if (playerEntered && Broken && Input.GetButton("Fix"))
         {
+            prompted = true;
+            KeyPrompt.SetActive(false);
+
             fixing = true;
             GameManager.Instance.Player.Fixing(true);
             brokenPercentage -= fixSpeed;
@@ -78,6 +84,10 @@ public class Electrical : MonoBehaviour
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if(player != null)
         {
+            if(!prompted && Broken)
+            {
+                KeyPrompt.SetActive(true);
+            }
             playerEntered = true;
         }
     }
@@ -87,6 +97,7 @@ public class Electrical : MonoBehaviour
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if(player != null)
         {
+            KeyPrompt.SetActive(false);
             playerEntered = false;
         }
     }

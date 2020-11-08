@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public Transform Bucket;
 
+    [HideInInspector]
+    public bool Moved = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
             if (Mathf.Abs(body.velocity.x) > .1f)
             {
+                Moved = true;
                 anim.SetBool("Moving", true);
             }
             else

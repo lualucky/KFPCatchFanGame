@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Fire;
 
+    public GameObject KeyPrompt;
+
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
 
@@ -54,15 +56,27 @@ public class GameManager : MonoBehaviour
     {
         ScoreText.text = "¥ " + Score;
         hatsRequired = HatParent.childCount;
+
+        StartCoroutine(KeyPromptCheck());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!ElectricalPanel.Broken && Random.value < BreakChance)
+        if(!HatEventActive && !ElectricalPanel.Broken && Random.value < BreakChance)
         {
             ElectricalPanel.SetBroken(true);
         }
+    }
+
+    IEnumerator KeyPromptCheck()
+    {
+        while(!Player.Moved)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        KeyPrompt.SetActive(false);
+        yield break;
     }
 
     public void ChangeScore(int points)

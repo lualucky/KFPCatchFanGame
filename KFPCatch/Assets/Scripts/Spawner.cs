@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(DoubleSpawnTime);
             SpawnRate *= 1.5f;
-            RegularBombPercent *= 1.5f;
+            RegularBombPercent *= 1.25f;
         }
     }
 
