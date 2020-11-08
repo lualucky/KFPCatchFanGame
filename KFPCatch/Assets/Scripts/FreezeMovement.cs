@@ -10,6 +10,8 @@ public class FreezeMovement : StateMachineBehaviour
         PlayerController pc = animator.gameObject.GetComponent<PlayerController>();
         if(pc)
         {
+            pc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            pc.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             pc.MovementEnabled = false;
         }
     }

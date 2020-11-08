@@ -299,8 +299,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1803834005
+  m_SortingLayer: 1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 56585025b3551ff408b36784895ac971, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -558,9 +558,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: 1803834005
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b6cf9a282c1679349b3d0758c9a2aadd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1225,9 +1225,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1803834005
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8b83fc8bfa5295e489733a7c73d2a787, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2260,16 +2260,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PapaLight
       objectReference: {fileID: 0}
-    - target: {fileID: 1504801636444205507, guid: 3e65d6793d8fe63419168d531e19483b,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1085974139
-      objectReference: {fileID: 0}
-    - target: {fileID: 1504801636444205507, guid: 3e65d6793d8fe63419168d531e19483b,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1504801636444205508, guid: 3e65d6793d8fe63419168d531e19483b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2324,16 +2314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1504801636444205508, guid: 3e65d6793d8fe63419168d531e19483b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.41957885
-      objectReference: {fileID: 0}
-    - target: {fileID: 1504801636444205508, guid: 3e65d6793d8fe63419168d531e19483b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.46652454
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e65d6793d8fe63419168d531e19483b, type: 3}
