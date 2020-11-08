@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool Moved = false;
 
+    private int catchCountSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,7 +97,9 @@ public class PlayerController : MonoBehaviour
     }
     public void CaughtGood()
     {
-        PlayRandomClip(GoodSounds);
+        catchCountSound = ++catchCountSound % 3;
+        if(catchCountSound == 0)
+            PlayRandomClip(GoodSounds);
     }
 
     public void CaughtHat()

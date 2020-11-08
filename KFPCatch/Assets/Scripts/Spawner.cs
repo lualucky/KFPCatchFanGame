@@ -66,6 +66,8 @@ public class Spawner : MonoBehaviour
             SpawnRate *= 1.5f;
             RegularBombPercent *= 1.25f;
             DoubleSpawnTime = 20;
+            if (SpawnRate >= .05)
+                yield break;
         }
     }
 
