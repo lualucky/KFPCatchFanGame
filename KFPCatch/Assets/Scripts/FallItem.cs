@@ -49,6 +49,13 @@ public class FallItem : MonoBehaviour
             obj.transform.position = transform.position;
         }
 
+        if(Score > 0)
+            GameManager.Instance.Player.CaughtGood();
+        else if(Score < 0)
+            GameManager.Instance.Player.CaughtBad();
+        else
+            GameManager.Instance.Player.CaughtHat();
+
         Destroy(gameObject);
     }
 

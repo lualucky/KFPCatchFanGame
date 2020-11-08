@@ -12,6 +12,8 @@ public class ScoreIndicator : MonoBehaviour
 
     private Dictionary<int, Sprite> points;
 
+    public bool Volume = true;
+
     public void SetScore(int score)
     {
         Assert.IsTrue(Scores.Count == Sprites.Count);
