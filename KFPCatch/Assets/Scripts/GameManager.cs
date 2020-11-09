@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText.text = "¥ " + Score;
+        ScoreText.text = "¥" + Score;
         hatsRequired = HatParent.childCount;
 
         StartCoroutine(KeyPromptCheck());
