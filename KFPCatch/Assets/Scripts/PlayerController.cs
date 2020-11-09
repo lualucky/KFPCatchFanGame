@@ -97,9 +97,9 @@ public class PlayerController : MonoBehaviour
     }
     public void CaughtGood()
     {
-        catchCountSound = ++catchCountSound % 3;
         if(catchCountSound == 0)
             PlayRandomClip(GoodSounds);
+        catchCountSound = (catchCountSound + 1) % 3;
     }
 
     public void CaughtHat()
