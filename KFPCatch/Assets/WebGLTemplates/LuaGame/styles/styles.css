@@ -1,0 +1,32 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  overflow-x: hidden;
+}
+.content-section-heading h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+}
+.block-heading {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.about-parent {
+	display: flex;
+  	flex-flow: column;
+}
+.image-right {
+	text-align: left;
+	float: right;
+	width: 50%;
+	height: 100%;
+	display: flex;
+  	flex-flow: column;
+}
+.image-left {
+	text-align: right;
+	float: left;
+ 	width: 50%;
+}

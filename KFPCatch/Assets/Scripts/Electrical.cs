@@ -30,7 +30,6 @@ public class Electrical : MonoBehaviour
 
 
     private bool playerEntered;
-    private bool fixing;
 
     // Start is called before the first frame update
     void Start()
@@ -56,29 +55,19 @@ public class Electrical : MonoBehaviour
                 health.fillAmount = Mathf.Lerp(startFill, target, timeElapsed);
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (playerEntered && Broken && Input.GetButton("Fix"))
+        if (playerEntered && Broken && Input.GetButtonDown("Fix"))
         {
             prompted = true;
             KeyPrompt.SetActive(false);
 
-            fixing = true;
             GameManager.Instance.Player.Fixing(true);
             brokenPercentage -= fixSpeed;
             if (!animating)
                 health.fillAmount = brokenPercentage;
-            if (brokenPercentage <= .02f)
+            if (brokenPercentage <= .04f)
             {
                 SetBroken(false);
             }
-        }
-        else if (fixing)
-        {
-            fixing = false;
-            GameManager.Instance.Player.Fixing(false);
         }
     }
 

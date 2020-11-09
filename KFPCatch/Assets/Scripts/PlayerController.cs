@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
             {
                 Moved = true;
                 anim.SetBool("Moving", true);
+                Fixing(false);
             }
             else
             {

@@ -151,7 +151,6 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("LOSE");
         Spawner.Active = false;
         HighScoreTracker.Instance.SetScore(Score);
         Player.gameObject.GetComponent<Animator>().SetTrigger("Lose");

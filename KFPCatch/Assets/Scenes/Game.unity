@@ -1312,7 +1312,7 @@ MonoBehaviour:
   Broken: 0
   health: {fileID: 870409073}
   UI: {fileID: 861307383}
-  fixSpeed: 0.01
+  fixSpeed: 0.07
   Smoke: {fileID: 2020492813}
   KeyPrompt: {fileID: 1930312859}
 --- !u!212 &1028029759
