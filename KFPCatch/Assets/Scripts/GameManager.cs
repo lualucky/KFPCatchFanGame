@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject KeyPrompt;
 
+    private float BGMvolume;
+
     static GameManager instance = null;
     public static GameManager Instance { get { return instance;  } }
 
@@ -113,6 +115,7 @@ public class GameManager : MonoBehaviour
 
         HatEventActive = false;
         Spawner.HatEvent = false;
+        Settings.Instance.GetComponent<AudioSource>().volume = BGMvolume;
         PapaGlow.GetComponentInChildren<Animator>().SetTrigger("lightOff");
     }
     IEnumerator StartPapaEvent()
@@ -136,6 +139,8 @@ public class GameManager : MonoBehaviour
             HatUI.GetComponent<Animator>().SetBool("Hat" + i, false);
         }
         PapaGlow.SetActive(true);
+        BGMvolume = Settings.Instance.GetComponent<AudioSource>().volume;
+        Settings.Instance.GetComponent<AudioSource>().volume = 0f;
 
         StartCoroutine(StartPapaEvent());
     }

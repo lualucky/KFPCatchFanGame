@@ -114,6 +114,7 @@ public class Electrical : MonoBehaviour
             // -- fix
             else
             {
+                GameManager.Instance.Player.Fixing(false);
                 anim.SetBool("Malfunction", false);
                 Smoke.SetActive(false);
                 GameManager.Instance.Spawner.Broken = false;
