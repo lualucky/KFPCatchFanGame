@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed;
+    //public float speed;
+    public float maxSpeed = 10f;
 
     private Rigidbody2D body;
     private SpriteRenderer sprite;
@@ -44,9 +45,10 @@ public class PlayerController : MonoBehaviour
         // -- movement
         if (MovementEnabled)
         {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            Vector2 movement = new Vector2(moveHorizontal, 0);
-            body.AddForce(movement * speed);
+            float moveHorizontal = Input.GetAxis("Horizontal");            
+            //Vector2 movement = new Vector2(moveHorizontal, 0);
+            //body.AddForce(movement * speed);
+            body.velocity = new Vector2(moveHorizontal * maxSpeed, body.velocity.y);
             // -- animation
             if ((body.velocity.x < -0.001f && isRight) || (body.velocity.x > 0.001f && !isRight))
             {
